@@ -1,0 +1,67 @@
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+#RewriteRule ^.*\log$ login.php [NC,L]
+RewriteRule    ^auth/email/signup$    signup.php    [NC,L]    # Handle requests for "pet-care"
+RewriteRule    ^auth/email/signin$    login.php    [NC,L]    #auth/twitter
+RewriteRule    ^auth/twitter$    twitter.php    [NC,L]
+RewriteRule    ^auth/email/forgotPassword$    forgotpassword.php    [NC,L]
+RewriteRule    ^user/password$    changepassword.php    [NC,L]
+RewriteRule    ^image/cache/user$    uploadimg.php    [NC,L]
+RewriteRule    ^user$    updateuser.php    [NC,L]
+RewriteCond %{REQUEST_METHOD}  !=POST
+RewriteRule    ^user/([0-9][^/\.]+)?$    get_user_detalis.php?user_id=$1   [NC,L]
+RewriteCond %{REQUEST_METHOD}  !=GET
+RewriteRule    ^user/address$    add_address.php    [NC,L]
+RewriteCond %{REQUEST_METHOD}  !=DELETE
+RewriteRule    ^user/address/([^/\.]+)?$        update_address.php?address_id=$1  [NC,L]
+RewriteCond %{REQUEST_METHOD}  !=PUT
+RewriteRule    ^user/address/([^/\.]+)?$        delete_address.php?address_id=$1  [NC,L]
+RewriteCond %{REQUEST_METHOD}  =GET
+RewriteRule    ^user/addresses/$        get_address.php  [NC,L]
+RewriteCond %{REQUEST_METHOD}  !=GET
+RewriteRule    ^payment/ac$            addpayment.php    [NC,L]
+RewriteRule    ^payment/ac/([0-9][^/\.]+)?$  update_payment.php?account_id=$1    [NC,L]
+RewriteRule    ^payments/ac/([0-9][^/\.]+)?$ delete_payment.php?account_id=$1    [NC,L]
+RewriteCond %{REQUEST_METHOD}  !=POST
+RewriteRule    ^payment/ac$           getallpayment.php [NC,L]
+RewriteRule    ^payment/cc$            addcard.php [NC,L]
+RewriteRule    ^payment/cc/([0-9][^/\.]+)?$  update_card.php?card_id=$1    [NC,L]
+RewriteRule    ^payments/cc/([0-9][^/\.]+)?$ deletecard.php?card_id=$1    [NC,L]
+RewriteRule    ^payments/cc$            getallcard.php [NC,L]
+RewriteRule    ^auth/logout$           logout.php [NC,L]
+RewriteRule    ^app/itemCategories$    appcat.php [NC,L]
+RewriteRule    ^app/sports$            appsport.php [NC,L]
+
+RewriteRule    ^item/$              item.php [NC,L]
+
+RewriteRule    ^item/([0-9][^/\.]+)?$     updateitem.php?item_id=$1    [NC,L]
+
+RewriteRule    ^items/([0-9][^/\.]+)?$     getitem.php?item_id=$1    [NC,L]
+RewriteRule    ^image/item/([0-9][^/\.]+)/([0-9])?$    imageitem.php?item_id=$1&index=$2    [NC,L]
+RewriteRule    ^user/([0-9]+)?/follow$    follow.php?user_id=$1&follow    [NC,L]
+RewriteRule    ^user/([0-9]+)?/unfollow$  unfollow.php?user_id=$1&unfollow    [NC,L]
+RewriteRule    ^user/([0-9]+)?/review$    rating.php?user_id=$1&review    [NC,L]
+RewriteRule    ^user/([0-9]+)?/reviews$   allrating.php?user_id=$1&review    [NC,L]
+RewriteRule    ^user/([0-9]+)?/followers$ followers.php?user_id=$1&review    [NC,L]
+RewriteRule    ^auth/facebook$    facebook.php    [NC,L]
+RewriteRule    ^video/item/([0-9][^/\.]+)?$    videoitem.php?item_id=$1    [NC,L]
+RewriteRule    ^explore/items$    getitemall.php    [NC,L]
+RewriteCond %{REQUEST_METHOD}  !=POST
+RewriteRule  ^item/delete/([0-9][^/\.]+)?$    deleteitme.php?item_id=$1    [NC,L]
+#deletevideo.php?item_id=26
+RewriteRule  ^video/delete/item/([0-9][^/\.]+)?$    deletevideo.php?item_id=$1    [NC,L]
+RewriteRule  ^image/delete/item/([0-9][^/\.]+)/([0-9])?$    deleteimage.php?item_id=$1&index=$2    [NC,L]
+RewriteRule  ^user/profile/([0-9][^/\.]+)?$    user_profile.php?user_id=$1    [NC,L]
+RewriteRule  ^available/item?$         avaibleitem.php    [NC,L]
+RewriteRule  ^item/fav/([0-9][^/\.]+)?$         fav_item.php?user_id=$1    [NC,L]
+RewriteRule  ^user/followers/([0-9][^/\.]+)?$   myfollower.php?user_id=$1    [NC,L]
+RewriteRule  ^user/following/([0-9][^/\.]+)?$   followlist.php?user_id=102=$1    [NC,L]
+RewriteRule  ^user/search?$                 searchuser.php    [NC,L]   #searchitem.php
+RewriteRule  ^item/search?$                 searchitem.php    [NC,L] 
+RewriteRule  ^item/search/cat?$                 searchitembycat.php    [NC,L] 
+RewriteRule  ^chat/?$                 chat.php    [NC,L]
+RewriteRule  ^chat/([0-9][^/\.]+)?$           getchat.php?friend_id=$1   [NC,L]
+RewriteRule  ^user/listing?$          lastlogin.php   [NC,L]
